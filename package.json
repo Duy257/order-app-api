@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/server.js\"",
-    "build": "npm install && rimraf dist && tsc -p tsconfig.build.json && node dist/server.js"
+    "dev": "prisma generate && tsc-watch -p tsconfig.build.json --onSuccess \"node dist/server.js\"",
+    "build": "prisma generate && yarn && rimraf dist && tsc -p tsconfig.build.json && node dist/server.js"
   },
   "author": "",
   "license": "ISC",
