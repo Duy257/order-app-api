@@ -7,8 +7,8 @@ const prisma = new PrismaClient();
 class AuthController {
   register = async (req, res) => {
     try {
-      let { username, email, name, password } = req.body;
-      if (!username || !email || !password || !name)
+      let { email, name, password } = req.body;
+      if (!email || !password || !name)
         return res.status(500).send({
           error: "Thiếu thông tin",
         });
@@ -25,7 +25,6 @@ class AuthController {
       } else {
         const hashPassword = await sha256(password);
         const data = {
-          username,
           password: hashPassword,
           name,
           email,
@@ -62,7 +61,7 @@ class AuthController {
       const hashPassword = await sha256(password);
       if (hashPassword === user.password) {
         let payload = {
-          username: user.username,
+          name: user.name,
           idUser: user.id,
         };
         const generateToken = Token.sign({ payload });
