@@ -5,14 +5,32 @@ generator client {
 datasource db {
   provider  = "postgresql"
   url  	    = env("DATABASE_URL")
-  // uncomment next line if you use Prisma <5.10
-  // directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
-model Users {
+model users {
   id   String @id @default(uuid())
   email String  @unique
   password  String
   avatar  String?
   name  String
+  role String
+}
+
+model role_policy {
+  id   String @id @default(uuid())
+  role String
+  policy String
+  code String
+}
+
+model role_permission {
+  id   String @id @default(uuid())
+  type String @unique @default("")
+  name String @default("")
+}
+
+model policy_permission {
+  id   String @id @default(uuid())
+  code String @unique @default("")
+  description String @default("")
 }
