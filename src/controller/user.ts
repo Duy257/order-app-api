@@ -46,5 +46,6 @@ class UserController {
       res.status(400).json(err);
     }
   };
+  update111 = async (req: Request, res: Response, next: NextFunction) => {};
 }
 export default new UserController();
