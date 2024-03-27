@@ -34,3 +34,28 @@ model policy_permission {
   code String @unique @default("")
   description String @default("")
 }
+
+model category {
+  id   String @id @default(uuid())
+  name String @unique @default("")
+  products product_category[]
+}
+
+model product {
+  id   String @id @default(uuid())
+  name String @default("")
+  image String @default("")
+  quantity Int @default(0)
+  description String @default("")
+  price Int @default(0)
+  unit String @default("")
+  categories product_category[]
+}
+
+model product_category {
+  id   String @id @default(uuid())
+  product product @relation(fields: [product_id], references: [id])
+  product_id String
+  category category @relation(fields: [category_id], references: [id])
+  category_id String
+}
