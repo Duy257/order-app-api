@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 const Token = {
   sign: ({ payload }) => {
     let accessToken = jwt.sign(payload, key_access, {
-      expiresIn: "10m",
+      expiresIn: "1h",
     });
     let refreshToken = jwt.sign(payload, key_refresh, {
       expiresIn: "72h",
